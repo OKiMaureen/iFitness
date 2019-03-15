@@ -1,10 +1,49 @@
-<section>
-  <form>
-    <mat-form-field >
-      <input matInput placeholder="Email Here">
+<section >
+  <mat-card >
+  <form  #form="ngForm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" (ngSubmit)="onSubmit(form)">
+    <mat-form-field hintLabel="First Name must not be less than 3 characters" >
+      <input matInput  ngModel name="firstName" placeholder="First name Here" minlength="3" required #firstName="ngModel">
+      <mat-hint align="end">{{firstName.value?.length}}/3</mat-hint>
+      <mat-error *ngIf="firstName.hasError('required')">First name field must not be empty</mat-error>
+      <mat-error *ngIf="!firstName.hasError('required')">First name field must be atleast 3 characters long</mat-error>
     </mat-form-field>
+    <mat-form-field hintLabel="Last Name must not be less than 3 characters" >
+        <input matInput  ngModel name="lastName" placeholder="First name Here" minlength="3" required #lastName="ngModel">
+        <mat-hint align="end">{{lastName.value?.length}}/3</mat-hint>
+        <mat-error *ngIf="lastName.hasError('required')">Last name field must not be empty</mat-error>
+        <mat-error *ngIf="!lastName.hasError('required')">Last name field must be atleast 3 characters long</mat-error>
+      </mat-form-field>
     <mat-form-field >
-      <input matInput placeholder="Password Here">
+      <input matInput  ngModel name="email" placeholder="Email Here" email required #email="ngModel">
+      <mat-error *ngIf="email.hasError('required')">Email field must not be empty</mat-error>
+      <mat-error *ngIf="!email.hasError('required')">Email field is invalid</mat-error>
     </mat-form-field>
+    <mat-form-field hintLabel="Password must not be less than 8 characters">
+      <input matInput ngModel name="password" placeholder="Password Here" minlength="8" required #password="ngModel">
+      <mat-hint align="end">{{password.value?.length}}/8</mat-hint>
+      <mat-error *ngIf="password.hasError('required')">Password field must not be empty</mat-error>
+      <mat-error *ngIf="!password.hasError('required')">Password must be atleast 8 characters long</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input 
+          matInput  
+          ngModel 
+          name="date" 
+          placeholder="Birth date" 
+          [matDatepicker]="picker" 
+          [max]="maxDate"
+          ngModel 
+          name="date" 
+          required
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-datepicker-toggle>
+    </mat-form-field>
+    <mat-checkbox ngModel name="terms" required color="primary">Agree to terms and conditions</mat-checkbox>
+    <button class="button" mat-raised-button type="submit" color="primary" [disabled]="form.invalid" >
+    Submit
+  </button>
   </form>
+  </mat-card>
 </section>
