@@ -1,0 +1,19 @@
+.welcome-title{
+    color:#673ab7;  
+    font-family: 'Roboto', sans-serif;
+    font-size: 200%;
+    margin-bottom: 80px;
+   
+
+}
+.welcome{
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+mat-card {
+    width: 50%;
+    height: auto;
+    text-align: center;
+  }
