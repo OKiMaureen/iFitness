@@ -16,6 +16,8 @@ import { CurrentProgramsComponent } from './training/current-programs/current-pr
 import { NewProgramsComponent } from './training/new-programs/new-programs.component';
 import { PastProgramsComponent } from './training/past-programs/past-programs.component';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HomeComponent } from './home/home.component';
     CurrentProgramsComponent,
     NewProgramsComponent,
     PastProgramsComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,
