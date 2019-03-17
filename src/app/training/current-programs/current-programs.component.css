@@ -1,0 +1,11 @@
+.current-program{
+    padding: 40px;
+}
+.current-program-percent{
+    color:#ffd740;
+}
+.mat-divider{
+    height:auto;
+    width:70%;
+    margin: 3%;
+}

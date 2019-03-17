@@ -1,0 +1,11 @@
+mat-form-field{
+    width: 60%;
+ }
+ mat-card{
+     width: 60%;
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 3%;
+     color:#673ab7
+ }
+ 
