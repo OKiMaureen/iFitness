@@ -1,3 +1,11 @@
-<p>
-  current-programs works!
-</p>
+<section class="current-program" fxLayout="column" fxLayoutAlign="center center">
+  <h1>Program Progress</h1>
+  <mat-divider></mat-divider>
+  <mat-progress-spinner mode="determinate" [value]="progress" color="accent"></mat-progress-spinner>
+  <h2 class="current-program-percent">{{progress}}%</h2>
+  <mat-divider></mat-divider>
+  <p>You can! keep going</p>
+  <button mat-raised-button color="primary" (click)=onClick()>Stop</button>
+</section>
+
+

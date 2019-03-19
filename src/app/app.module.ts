@@ -18,6 +18,9 @@ import { PastProgramsComponent } from './training/past-programs/past-programs.co
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { StopProgramComponent } from './training/stop-program/stop-program.component';
+
+import { AuthService } from './auth/auth.services';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     PastProgramsComponent,
     HomeComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    StopProgramComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     FlexLayoutModule,
     FormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
+  entryComponents: [StopProgramComponent],
 })
 export class AppModule { }
