@@ -20,6 +20,8 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StopProgramComponent } from './training/stop-program/stop-program.component';
 
+import { AuthService } from './auth/auth.services';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,7 @@ import { StopProgramComponent } from './training/stop-program/stop-program.compo
     FlexLayoutModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StopProgramComponent],
 })
