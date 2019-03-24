@@ -42,9 +42,10 @@
         </mat-datepicker-toggle>
     </mat-form-field>
     <mat-checkbox  ngModel name="terms" required color="primary">Agree to terms and conditions</mat-checkbox>
-    <button class="button" mat-raised-button type="submit" color="primary" [disabled]="form.invalid" >
+    <button *ngIf= "!isLoading" class="button" mat-raised-button type="submit" color="primary" [disabled]="form.invalid" >
    Register
   </button>
+  <mat-spinner *ngIf= "isLoading"></mat-spinner>
   </form>
   </mat-card>
 </section>
