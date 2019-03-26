@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { StopProgramComponent } from '../stop-program/stop-program.component'
+import { ProgramService } from '../program.service';
 
 @Component({
   selector: 'app-current-programs',
@@ -11,21 +12,23 @@ import { StopProgramComponent } from '../stop-program/stop-program.component'
 export class CurrentProgramsComponent implements OnInit {
   progress = 0;
   timer: number;
-  @Output() exitProgram= new EventEmitter<void>();
 
 
-  constructor(private dialog: MatDialog) { }
+
+  constructor(private dialog: MatDialog, private programService: ProgramService ) { }
 
   ngOnInit() {
     this.startTimer();
   }
   startTimer(){
-    this.timer=setInterval(()=>{
+    const step = this.programService.getCurrentProgram().duration / 100 * 1000;
+    this.timer = setInterval(()=>{
       this.progress = this.progress + 1;
       if (this.progress >=100){
+        this.programService.completeProgram();
         clearInterval(this.timer);
       }
-    }, 1000)
+    }, step)
 
   }
   onClick(){
@@ -38,7 +41,7 @@ export class CurrentProgramsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       result =>{ 
         if(result){
-          this.exitProgram.emit()
+          this.programService.cancelProgram(this.progress)
         } else {
           this.startTimer();
         }

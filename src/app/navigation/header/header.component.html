@@ -5,14 +5,15 @@
       </button>
     </div>
     <div>
-        <a routerLink="/">Logo</a>
+        <a routerLink="/">iFitness</a>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items">
         <li *ngIf='!isAuth'><a routerLink="/signup">Sign Up</a></li>
         <li *ngIf='!isAuth'><a routerLink="/login">Login</a></li>
         <li *ngIf='isAuth'><a routerLink="/training">Program</a></li>
-        <li *ngIf='isAuth'><a>Logout</a></li>
+        <li *ngIf='isAuth' (click)="logout()"><a>Logout</a></li>
       </ul>
      </div>
   </mat-toolbar>
+  

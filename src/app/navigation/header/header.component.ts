@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import {AuthService} from '../../auth/auth.services';
 
 @Component({
@@ -26,6 +26,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   onToggleSideNav(){
     this.sideNavToggle.emit();
+  }
+
+  logout(){
+    this.authService.logoutUser();
   }
 
 }
