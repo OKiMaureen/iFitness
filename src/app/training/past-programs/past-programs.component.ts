@@ -38,7 +38,9 @@ export class PastProgramsComponent implements OnInit, AfterViewInit,  OnDestroy 
   }
 
   ngOnDestroy(){
-    this.finishedProgramSubscription.unsubscribe();
+    if( this.finishedProgramSubscription ){
+      this.finishedProgramSubscription.unsubscribe()
+    }
   }
 
 }
