@@ -35,9 +35,12 @@ export class NewProgramsComponent implements OnInit,  OnDestroy {
     this.programService.startProgram(form.value.program); 
   }
   ngOnDestroy(){
-    this.loadingSubscription.unsubscribe();
-    this.programSubscription.unsubscribe();
-
+    if(this.loadingSubscription ){
+      this.loadingSubscription.unsubscribe()
+    }
+    if(this.programSubscription ){
+      this.programSubscription.unsubscribe()
+    }
   }
 
   fetchPrograms(){

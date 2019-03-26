@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription'
 import { ProgramService } from './program.service';
-import { UiService } from '../shared/ui.service';
+
 
 
 @Component({
@@ -16,9 +16,9 @@ export class TrainingComponent implements OnInit, OnDestroy {
   loadingSubscription = new Subscription;
 
   constructor(
-    private programService: ProgramService,
-    private uiService: UiService,
-    ) {
+    private programService: ProgramService ) {}
+
+  ngOnInit() {
     this.programSubcsription = this.programService.programChanged.subscribe(program => {
       if(program){
         this.currentProgram= true;
@@ -26,16 +26,14 @@ export class TrainingComponent implements OnInit, OnDestroy {
         this.currentProgram =false;
       }
     })
-   }
+  }
 
-  ngOnInit() {
-    this.loadingSubscription = this.uiService.loadingStateChanged.subscribe(
-      isLoading => this.isLoading = isLoading
-    );
-  }
   ngOnDestroy(){
-    this.loadingSubscription.unsubscribe();
+    if(this.programSubcsription){
+      this.programSubcsription.unsubscribe();
+    }
   }
+  
 
 
 }

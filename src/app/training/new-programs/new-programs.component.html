@@ -15,11 +15,11 @@
           </mat-form-field>
           <mat-spinner *ngIf= "isLoading"></mat-spinner>
        </mat-card-content>
-       <mat-card-actions fxLayoutAlign="center" *ngIf="isLoading">
+       <mat-card-actions fxLayoutAlign="center" *ngIf="!isLoading">
          <button *ngIf= "programs" color="primary" type="submit" mat-raised-button [disabled]="form.invalid">
           Start
          </button>
-         <button *ngIf= "!programs" color="primary"  mat-raised-button (click)="fetchPrograms()">
+         <button *ngIf= "!programs" color="primary"  type="buttton" mat-raised-button (click)="fetchPrograms()">
             Fetch Again
           </button>
        </mat-card-actions>
