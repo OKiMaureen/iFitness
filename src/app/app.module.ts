@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // components
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +22,9 @@ import { ProgramService } from './training/program.service';
 import { UiService } from './shared/ui.service';
 import { environment } from '../environments/environment';
 import { AuthModule } from './auth/auth.module';
+import { reducers } from './app.reducer';
+
+
 
 
 
@@ -41,6 +46,10 @@ import { AuthModule } from './auth/auth.module';
     FormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    }),
    
    
   ],

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { StoreModule } from '@ngrx/store';
 
 import { MaterialModule } from '../material.module';
 import { TrainingComponent } from './training.component';
@@ -11,6 +12,7 @@ import { PastProgramsComponent } from './past-programs/past-programs.component';
 import { StopProgramComponent } from './stop-program/stop-program.component';
 import { Sharedmodule } from '../shared/shared.module';
 import { TrainingRoutingModule } from './training-routing.module';
+import { trainingReducer } from './training.reducer';
 
 
 
@@ -30,7 +32,8 @@ import { TrainingRoutingModule } from './training-routing.module';
         FlexLayoutModule,
         FormsModule,
         CommonModule,
-        TrainingRoutingModule
+        TrainingRoutingModule,
+        StoreModule.forFeature('training', trainingReducer)
 
     
     ],

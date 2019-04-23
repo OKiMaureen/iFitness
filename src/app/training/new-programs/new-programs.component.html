@@ -6,20 +6,23 @@
         </mat-card-title>
         <form  fxLayout="column" fxLayoutAlign="center center" (ngSubmit)= "onStart(form)" #form="ngForm" >
         <mat-card-content fxLayoutAlign="center">
-          <mat-form-field *ngIf="!isLoading && programs">
+          <mat-form-field *ngIf="!(isLoading$ | async) && programs$ | async">
             <mat-select placeholder="Choose a program" ngModel name='program' required>
-              <mat-option *ngFor= 'let program of programs' [value]=program.id>
+              <mat-option *ngFor= 'let program of programs$ | async' [value]=program.id>
                {{program.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-spinner *ngIf= "isLoading"></mat-spinner>
+          <mat-spinner *ngIf= "isLoading$ | async"></mat-spinner>
        </mat-card-content>
-       <mat-card-actions fxLayoutAlign="center" *ngIf="!isLoading">
-         <button *ngIf= "programs" color="primary" type="submit" mat-raised-button [disabled]="form.invalid">
+
+      
+       
+       <mat-card-actions fxLayoutAlign="center" *ngIf="!(isLoading$ | async)">
+         <button *ngIf= "programs$ | async" color="primary" type="submit" mat-raised-button [disabled]="form.invalid">
           Start
          </button>
-         <button *ngIf= "!programs" color="primary"  type="buttton" mat-raised-button (click)="fetchPrograms()">
+         <button *ngIf= "!(programs$ | async)" color="primary"  type="buttton" mat-raised-button (click)="fetchPrograms()">
             Fetch Again
           </button>
        </mat-card-actions>
