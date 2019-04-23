@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
-
+import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 import { StopProgramComponent } from '../stop-program/stop-program.component'
 import { ProgramService } from '../program.service';
+import * as fromTraining from '../training.reducer';
 
 @Component({
   selector: 'app-current-programs',
@@ -13,22 +15,28 @@ export class CurrentProgramsComponent implements OnInit {
   progress = 0;
   timer: number;
 
+  @Output() exitProgram= new EventEmitter<void>();
 
 
-  constructor(private dialog: MatDialog, private programService: ProgramService ) { }
+  constructor(private dialog: MatDialog,
+    private store: Store<fromTraining.State>,
+    private programService: ProgramService) { }
 
   ngOnInit() {
     this.startTimer();
   }
   startTimer(){
-    const step = this.programService.getCurrentProgram().duration / 100 * 1000;
-    this.timer = setInterval(()=>{
+    this.store.select(fromTraining.getActiveProgram).pipe(take(1)).subscribe(program => {
+      const step = program.duration / 100 * 1000
+      this.timer=setInterval(()=>{
       this.progress = this.progress + 1;
       if (this.progress >=100){
         this.programService.completeProgram();
         clearInterval(this.timer);
       }
     }, step)
+    })
+    
 
   }
   onClick(){

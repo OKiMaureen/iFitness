@@ -1,6 +1,6 @@
-<mat-tab-group mat-align-tabs="center" *ngIf="!currentProgram">
+<mat-tab-group mat-align-tabs="center" *ngIf="!(currentProgram$ | async)">
     <mat-tab label="New Programs">
-      <app-new-programs (startProgram) = "currentProgram=true"></app-new-programs>
+      <app-new-programs></app-new-programs>
     </mat-tab>
     <mat-tab label="Past Programs">
       <app-past-programs>
@@ -8,4 +8,4 @@
       </app-past-programs>
     </mat-tab>
 </mat-tab-group>
-<app-current-programs *ngIf="currentProgram" ></app-current-programs>
+<app-current-programs *ngIf="currentProgram$ | async" ></app-current-programs>

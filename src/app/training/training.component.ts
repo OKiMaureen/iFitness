@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
-import { Subscription } from 'rxjs/Subscription'
-import { ProgramService } from './program.service';
-
+import { Component, OnInit} from '@angular/core';
+import { Subscription, Observable } from 'rxjs'
+import { Store } from '@ngrx/store';
+import * as fromTraining from '../training/training.reducer';
 
 
 @Component({
@@ -9,31 +9,15 @@ import { ProgramService } from './program.service';
   templateUrl: './training.component.html',
   styleUrls: ['./training.component.css']
 })
-export class TrainingComponent implements OnInit, OnDestroy {
-  currentProgram = false;
-  programSubcsription: Subscription;
-  isLoading: boolean =false;
-  loadingSubscription = new Subscription;
+export class TrainingComponent implements OnInit {
+  currentProgram$: Observable<boolean>;
 
   constructor(
-    private programService: ProgramService ) {}
+    private store: Store<fromTraining.State>) {}
 
   ngOnInit() {
-    this.programSubcsription = this.programService.programChanged.subscribe(program => {
-      if(program){
-        this.currentProgram= true;
-      } else {
-        this.currentProgram =false;
-      }
-    })
-  }
+    this.currentProgram$ = this.store.select(fromTraining.getIsTraining)
 
-  ngOnDestroy(){
-    if(this.programSubcsription){
-      this.programSubcsription.unsubscribe();
-    }
   }
-  
-
 
 }
